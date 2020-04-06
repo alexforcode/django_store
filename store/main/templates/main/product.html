@@ -1,0 +1,26 @@
+{% extends 'main/_base.html' %}
+
+{% block title %}{{ product.title }} - {% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+  {% include 'main/_sidebar.html' %}
+  <div class="col-lg-9">
+    <div class="card mt-4">
+      <img class="card-img-top img-fluid" src="{% if product.image %}{{ product.image.url }}{% else %}{{ no_image }}{% endif %}" alt="">
+      <div class="card-body">
+        <h3 class="card-title">{{ product.title }}</h3>
+        <p class="card-text">{{ product.desc }}</p>
+      </div>
+      <div class="card-footer text-right">
+        <h4>{{ product.price }} руб.</h4>
+        <form action="{% url 'cart:cart_add'%}" method="post" class="add-to-cart" product-id="{{ product.id }}">
+          {% csrf_token %}
+          {{ cart_product_form }}
+          <button type="submit" class="btn btn-outline-primary">Добавить в корзину</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

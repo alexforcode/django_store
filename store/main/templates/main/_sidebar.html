@@ -1,0 +1,21 @@
+<div class="col-lg-3">
+
+  <h1 class="my-4">Каталог</h1>
+
+  <div class="mb-3">
+    <form class="form-inline my-2 my-lg-0" action="{% url 'main:search' %}" method="get">
+      <div class="form-group">
+        <input type="search" class="form-control" name='q' placeholder="Поиск по товарам">
+      </div>
+    </form>
+  </div>
+
+  <div class="list-group mb-3">
+  {% for cat in categories %}
+    <a href="{{ cat.get_absolute_url }}" class="{% if category.slug == cat.slug %}active{% endif %} list-group-item">
+      {{ cat.title }}
+    </a>
+  {% endfor %}
+  </div>
+
+</div>

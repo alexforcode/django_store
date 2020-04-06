@@ -1,0 +1,29 @@
+{% extends 'main/_base.html' %}
+
+{% block title %}Вход - {% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-sm-4 offset-sm-4 text-center my-4">
+    <h1>Вход</h1>
+    <form class="" action="{% url 'users:login' %}" method="post">
+      {% csrf_token %}
+      {% if user_form.errors %}
+        {% for error in user_form.non_field_errors %}
+          <p class='text-danger'>{{ error }}</p>
+        {% endfor %}
+      {% endif %}
+      <div class="form-group">
+        <label for="id_username">Логин:</label>
+        {{ user_form.username }}
+      </div>
+      <div class="form-group">
+        <label for="id_password">Пароль:</label>
+        {{ user_form.password }}
+      </div>
+      <button type="submit" class="btn btn-success">Войти</button>
+      <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+    </div>
+  </div>
+{% endblock %}

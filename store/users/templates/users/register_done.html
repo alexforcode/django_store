@@ -1,0 +1,10 @@
+{% extends 'main/_base.html' %}
+
+{% block title %}Регистрация - {% endblock %}
+
+{% block content %}
+<div class="my-4">
+  <h1>Добро пожаловать</h1>
+  <p>Вы успешно зарегистрировались! <a href="{% url 'users:login' %}">Войдите</a> в магазин.</p>
+</div>
+{% endblock %}

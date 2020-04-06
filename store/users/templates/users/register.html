@@ -1,0 +1,36 @@
+{% extends 'main/_base.html' %}
+
+{% block title %}Регистрация - {% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-sm-4 offset-sm-4 text-center my-4">
+    <h1>Регистрация</h1>
+    <form class="" action="{% url 'users:register' %}" method="post">
+      {% csrf_token %}
+      {% if user_form.errors %}
+        <p class="text-danger">Ошибка!</p>
+      {% endif %}
+
+      <div class="form-group">
+        <label for="{{ user_form.username.id_for_label }}">Логин:</label>
+        {{ user_form.username }}
+      </div>
+      <div class="form-group">
+        <label for="{{ user_form.email.id_for_label }}">Email:</label>
+        {{ user_form.email }}
+      </div>
+      <div class="form-group">
+        <label for="{{ user_form.password.id_for_label }}">Пароль:</label>
+        {{ user_form.password }}
+      </div>
+      <div class="form-group">
+        <label for="{{ user_form.password_confirm.id_for_label }}">Повтор пароля:</label>
+        {{ user_form.password_confirm }}
+      </div>
+      <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+      <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+    </div>
+  </div>
+{% endblock %}
